@@ -15,6 +15,7 @@ function App() {
     console.log(userObj);
 
     setUser(userObj);
+    document.getElementById("signInDiv").hidden = true;
   }
   useEffect(() => {
     // global google
@@ -32,6 +33,7 @@ function App() {
   return (
     <div className='App'>
       <div id="signInDiv"></div>
+      <button onClick={() => google.accounts.id.disableAutoSelect()}>Disable Auto Select</button>
       <img src={user.picture} alt={user.name} /> 
     </div>
 
