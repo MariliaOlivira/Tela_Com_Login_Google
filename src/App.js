@@ -1,14 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect } from 'react';
+import { useState } from 'react';
 import jwt_decode from "jwt-decode";
-import header from './components/header';
 
 function App() {
+
+  const [user, setUser] = useState({});
+
   function handlecallback(response){
     console.log("Encodede JWT ID token:" + response.credential);
     var userObj = jwt_decode(response.credential);
     console.log("Decoded JWT ID token:" + userObj);
+    console.log(userObj);
+
+    setUser(userObj);
   }
   useEffect(() => {
     // global google
@@ -26,6 +32,7 @@ function App() {
   return (
     <div className='App'>
       <div id="signInDiv"></div>
+      <img src={user.picture} alt={user.name} /> 
     </div>
 
   );
