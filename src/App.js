@@ -17,6 +17,13 @@ function App() {
     setUser(userObj);
     document.getElementById("signInDiv").hidden = true;
   }
+  
+  function handleSingOut(){
+    setUser({});
+    document.getElementById("signInDiv").hidden = false;
+
+  }
+
   useEffect(() => {
     // global google
     google.accounts.id.initialize({
@@ -33,7 +40,9 @@ function App() {
   return (
     <div className='App'>
       <div id="signInDiv"></div>
-      <button onClick={() => google.accounts.id.disableAutoSelect()}>Disable Auto Select</button>
+      {Object.keys(user).length > 0 &&
+        <button onClick={(e) => handleSingOut(e)}>Disable Auto Select</button>
+      }
       <img src={user.picture} alt={user.name} /> 
     </div>
 
