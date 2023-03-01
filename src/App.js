@@ -35,6 +35,7 @@ function App() {
       document.getElementById("signInDiv"),
       {theme: "outline", size: "large"}
     )
+    google.accounts.id.prompt();
   }, []);
 
   return (
