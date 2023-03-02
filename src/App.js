@@ -1,8 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import jwt_decode from "jwt-decode";
+import Header from './components/header';
+import Footer from './components/Footer';
+import { BrowserRouter } from 'react-router-dom';
+// import { Routes } from './Routes';
+
 
 function App() {
 
@@ -12,7 +16,7 @@ function App() {
     console.log("Encodede JWT ID token:" + response.credential);
     var userObj = jwt_decode(response.credential);
     console.log("Decoded JWT ID token:" + userObj);
-    console.log(userObj);
+    console.log(userObj.email);
 
     setUser(userObj);
     document.getElementById("signInDiv").hidden = true;
@@ -39,13 +43,17 @@ function App() {
   }, []);
 
   return (
-    <div className='App'>
+ 
+    <BrowserRouter>
+      <Header />
+      {/* <Routes/> */}
       <div id="signInDiv"></div>
       {Object.keys(user).length > 0 &&
-        <button onClick={(e) => handleSingOut(e)}>Disable Auto Select</button>
+        <button onClick={(e) => handleSingOut(e)}>Quero Sair</button>
       }
-      <img src={user.picture} alt={user.name} /> 
-    </div>
+      <img src={user.picture} alt={user.name} />
+      <Footer/> 
+    </BrowserRouter>
 
   );
 }
