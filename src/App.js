@@ -2,9 +2,8 @@ import './App.css';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import jwt_decode from "jwt-decode";
-import Header from './components/header';
-import Footer from './components/Footer';
-import { BrowserRouter } from 'react-router-dom';
+import Header from './components/header/index';
+// import { BrowserRouter } from 'react-router-dom';
 // import { Routes } from './Routes';
 
 
@@ -43,17 +42,7 @@ function App() {
   }, []);
 
   return (
- 
-    <BrowserRouter>
-      <Header />
-      {/* <Routes/> */}
-      <div id="signInDiv"></div>
-      {Object.keys(user).length > 0 &&
-        <button onClick={(e) => handleSingOut(e)}>Quero Sair</button>
-      }
-      <img src={user.picture} alt={user.name} />
-      <Footer/> 
-    </BrowserRouter>
+    <Header />
 
   );
 }
